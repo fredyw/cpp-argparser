@@ -1,0 +1,12 @@
+.cproject
+.project
+.settinsg
+Debug
+bin
+*.sdf
+*.suo
+*.vcxproj.user
+ipch
+*.so
+*.a
+*.o

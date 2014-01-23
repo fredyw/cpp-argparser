@@ -1,0 +1,31 @@
+CC = g++
+AR = ar
+CCFLAGS = -g -Wall
+INCLUDES = -Iinclude
+SRC_DIR = src
+SRC = $(SRC_DIR)/Argument.cpp $(SRC_DIR)/ArgumentParser.cpp $(SRC_DIR)/ParsedArgument.cpp
+OBJ = $(SRC:.cpp=.o)
+OUT = libcppargparser.a
+
+GTEST_HOME = /home/fredy/gtest-1.6.0
+TEST_INCLUDEDIR = -I$(GTEST_HOME)/include
+TEST_LIBS = -lpthread $(GTEST_HOME)/make/gtest_main.a
+TEST_DIR = test
+TEST_OUT = cppargparser_test
+
+.PHONY: all clean static test
+
+all: static
+
+static: $(OBJ)
+	$(AR) rcs $(OUT) $(OBJ)
+
+%.o: %.cpp
+	$(CC) $(CCFLAGS) $(INCLUDES) -c -o $@ $<
+
+test: $(OBJ)
+	$(CC) $(CCFLAGS) $(INCLUDES) $(TEST_INCLUDEDIR) $(OBJ) -o $(TEST_OUT) $(TEST_DIR)/*.cpp $(TEST_LIBS) 
+
+clean:
+	rm -rf $(OBJ) $(OUT)
+	rm -rf $(TEST_OUT)
