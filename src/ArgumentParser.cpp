@@ -94,7 +94,7 @@ ParsedArgument ArgumentParser::parse(int argc, char** argv) {
                 for (; i < n; ++i) {
                     if (i >= v.size()) {
                         throw InvalidArgumentException(
-                            argument.getDescription() + " requires " +
+                            argument.getArg() + " requires " +
                             cppargparser::toString(argument.getNumArgs()) +
                             " argument(s)");
                     }
@@ -130,7 +130,7 @@ ParsedArgument ArgumentParser::parse(int argc, char** argv) {
     // if there are, throw an InvalidArgumentException
     for (map<string, Argument>::const_iterator i = args.begin(); i != args.end(); ++i) {
         if (i->second.isMandatory()) {
-            throw InvalidArgumentException(i->second.getDescription() +
+            throw InvalidArgumentException(i->second.getArg() +
                 " is a mandatory argument");
         }
     }

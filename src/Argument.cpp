@@ -77,6 +77,16 @@ Argument::Argument(const string& _arg, const string& _desc, Type _type,
 
 Argument::~Argument() {}
 
+string Argument::getArg() const {
+    if (!shortArg.empty()) {
+        return shortArg;
+    }
+    if (!longArg.empty()) {
+        return longArg;
+    }
+    return "";
+}
+
 string Argument::getShortArg() const {
     return shortArg;
 }

@@ -79,6 +79,12 @@ public:
         int numArgs, bool mandatory, Validator* validator);
 
     /**
+     * Gets the argument (short and then long).
+     * @return the argument
+     */
+    std::string getArg() const;
+
+    /**
      * Gets the short argument.
      * @return the short argument
      */

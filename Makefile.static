@@ -7,9 +7,9 @@ SRC = $(SRC_DIR)/Argument.cpp $(SRC_DIR)/ArgumentParser.cpp $(SRC_DIR)/ParsedArg
 OBJ = $(SRC:.cpp=.o)
 OUT = libcppargparser.a
 
-GTEST_HOME = /home/fredy/gtest-1.6.0
+GTEST_HOME = gtest-1.7.0
 TEST_INCLUDEDIR = -I$(GTEST_HOME)/include
-TEST_LIBS = -lpthread $(GTEST_HOME)/make/gtest_main.a
+TEST_LIBS = $(GTEST_HOME)/make/gtest_main.a -lpthread
 TEST_DIR = test
 TEST_OUT = cppargparser_test
 
@@ -24,6 +24,7 @@ static: $(OBJ)
 	$(CC) $(CCFLAGS) $(INCLUDES) -c -o $@ $<
 
 test: $(OBJ)
+	cd $(GTEST_HOME)/make && $(MAKE)
 	$(CC) $(CCFLAGS) $(INCLUDES) $(TEST_INCLUDEDIR) $(OBJ) -o $(TEST_OUT) $(TEST_DIR)/*.cpp $(TEST_LIBS) 
 
 clean:
